@@ -51,16 +51,4 @@ function runEnter() {
     });
      
   
-  
-    // var list = d3.select(".summary");
-  
-    // // remove any children from the list to
-    // list.html("");
-  
-    // // append stats to the list
-    // list.append("li").text(`Mean: ${mean}`);
-    // list.append("li").text(`Median: ${median}`);
-    // list.append("li").text(`Mode: ${mode}`);
-    // list.append("li").text(`Variance: ${variance}`);
-    // list.append("li").text(`Standard Deviation: ${standardDeviation}`);
 };
