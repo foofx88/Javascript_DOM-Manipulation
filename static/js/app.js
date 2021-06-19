@@ -2,7 +2,7 @@
 var tableData = data;
 //console.log(tableData);
 
-var ufotable = d3.select("#ufo-table");
+var ufotable = d3.select("tbody");
 
   tableData.forEach(function(ufosights) {
     console.log(ufosights);
@@ -33,11 +33,13 @@ function runEnter() {
     var inputDate = inputElement.property("value");
   
     console.log(inputDate);
-    
+
+    tableData.forEach(function validate(errorcheck) {
+    if (inputDate.includes(tableData.datetime)) {
     var filteredDate = tableData.filter(tableData => tableData.datetime === inputDate);
   
     console.log(filteredDate);
-    document.getElementById("ufo-table").innerHTML = "";
+    document.getElementsById("ufo-data").innerHTML = "";
 
     filteredDate.forEach(function(datedata) {
         
@@ -49,6 +51,19 @@ function runEnter() {
           filteredcell.text(value);
         });
     });
+   
+  } 
+  else {
+    text = "Input not valid, Please try another Date";
+    document.getElementById("ufo-table").innerHTML = "";
+    invalidinput = d3.select(".error");
+    invalidinput.text(text);
+  }
+  
+    });
      
   
 };
+
+
+  
