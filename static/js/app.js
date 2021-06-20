@@ -39,26 +39,38 @@ function runEnter() {
     var DateInput = inputDate.property("value");
     var CityInput = inputCity.property("value");
   
-    console.log(DateInput);
-    console.log(CityInput);
+    // console.log(DateInput);
+    // console.log(CityInput);
 
     var filteredDate = tableData.filter(tableData => tableData.datetime === DateInput);
+    var filteredCity = tableData.filter(tableData => tableData.city === CityInput);
+
+    var filterCombined = tableData.filter(tableData => tableData.datetime === DateInput && tableData.city === CityInput);
   
-    console.log(filteredDate);
+    // console.log(filteredDate);
+    // console.log(filteredCity);
+    // console.log(filteredCombined);
     // document.getElementById("ufo-data").innerHTML = "";
+
+
     ufotable.html("");
 let response = {
-    filteredDate
+    filteredDate, filteredCity, filterCombined
 }
 
 
-if(response.filteredDate.length !== 0) {
-    writeData(filteredDate);
+if(response.filterCombined.length !== 0) {
+    writeData(filterCombined);
 }
 
-    else {
+
+else if(response.filterCombined.length === 0 && ((response.filteredDate.length !== 0 || response.filteredCity.length !== 0))) {
+    writeData(filteredDate) || writeData(filteredCity);
+    }
+
+else {
         ufohead.html("");
-        ufohead.append("tr").append("td").text(`No sightings on ${inputDate} ... The Truth is still out there.`);
+        ufohead.append("tr").append("td").text(`No sightings on ${DateInput || CityInput} ... The Truth is still out there.`);
     
 
         function timedRefresh(timeoutPeriod) {
