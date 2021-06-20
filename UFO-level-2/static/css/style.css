@@ -8,6 +8,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background: #404564;
   }
 }
 
@@ -36,7 +37,7 @@ body {
   bottom: 0;
   left: 0;
   padding: 5px;
-  background: #003b72;
+  background: #008f4ccc;
 }
 
 .navbar {
@@ -56,6 +57,7 @@ body {
 /* Adding styles to the aside and filter form */
 .ufo-form {
   margin-top: 50px;
+  
 }
 
 .filters .panel-body {
@@ -70,7 +72,7 @@ select {
   display: block;
   width: 100%;
   padding: 8px;
-  color: #8284e6;
+  color: #999abe;
   outline: none;
 }
 
@@ -121,22 +123,22 @@ select {
 /* input placeholder color changes */
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #8284e6;
+  color: #999abe;
 }
 
 .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: #8284e6;
+  color: #999abe;
 }
 
 .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: #8284e6;
+  color: #999abe;
 }
 
 .form-control:-moz-placeholder {
   /* Firefox 18- */
-  color: #8284e6;
+  color: #999abe;
 }
 
 /* media queries which will only be activated at specific screen sizes */
