@@ -3,8 +3,10 @@ var tableData = data;
 //console.log(tableData);
 
 var ufotable = d3.select("tbody");
+var ufohead = d3.select("thead");
 
-  tableData.forEach(function(ufosights) {
+  function writeData(dataInput) {
+    dataInput.forEach(function(ufosights) {
     console.log(ufosights);
     var row = ufotable.append("tr");
   
@@ -14,10 +16,13 @@ var ufotable = d3.select("tbody");
       cell.text(value);
     });
   });
+}
 
+writeData(tableData);
 
-// Select the form
 var datetime_form = d3.select("#datetime");
+var city_form = d3.select("#city");
+city_form.on("subnmit", runEnter);
 datetime_form.on("submit",runEnter);
 
 var filter_button = d3.select("#filter-btn");
@@ -28,42 +33,57 @@ function runEnter() {
 
     d3.event.preventDefault();
     
-    var inputElement = d3.select("#datetime");
+    var inputDate = d3.select("#datetime");
+    var inputCity = d3.select("#city");
 
-    var inputDate = inputElement.property("value");
+    var DateInput = inputDate.property("value");
+    var CityInput = inputCity.property("value");
   
-    console.log(inputDate);
+    console.log(DateInput);
+    console.log(CityInput);
 
-    tableData.forEach(function validate(errorcheck) {
-    if (inputDate.includes(tableData.datetime)) {
-    var filteredDate = tableData.filter(tableData => tableData.datetime === inputDate);
+    var filteredDate = tableData.filter(tableData => tableData.datetime === DateInput);
   
     console.log(filteredDate);
-    document.getElementsById("ufo-data").innerHTML = "";
+    // document.getElementById("ufo-data").innerHTML = "";
+    ufotable.html("");
+let response = {
+    filteredDate
+}
 
-    filteredDate.forEach(function(datedata) {
+
+if(response.filteredDate.length !== 0) {
+    writeData(filteredDate);
+}
+
+    else {
+        ufohead.html("");
+        ufohead.append("tr").append("td").text(`No sightings on ${inputDate} ... The Truth is still out there.`);
+    
+
+        function timedRefresh(timeoutPeriod) {
+            setTimeout("location.reload(true);",timeoutPeriod);
+        }
         
-        var filteredrow = ufotable.append("tr");
-      
-        Object.entries(datedata).forEach(function([key, value]) {
-          
-          var filteredcell = filteredrow.append("td");
-          filteredcell.text(value);
-        });
-    });
-   
-  } 
-  else {
-    text = "Input not valid, Please try another Date";
-    document.getElementById("ufo-table").innerHTML = "";
-    invalidinput = d3.select(".error");
-    invalidinput.text(text);
-  }
-  
-    });
-     
-  
-};
+        var timeleft = 10;
+        var downloadTimer = setInterval(function(){
+          if(timeleft <= 0){
+
+            window.onload = timedRefresh(0);
+    
+          } else {
+            ufohead.html("");
+            ufohead.append("tr").append("td").text(`Memory will be wiped in ${timeleft} seconds`);
+          }
+          timeleft -= 1;
+        }, 1000);
 
 
-  
+
+        
+
+        
+
+
+    }
+}
