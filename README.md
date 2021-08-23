@@ -1,3 +1,5 @@
+<h3>JavaScript Demo</h3>
+<hr>
 <img src="/snips/ufosight.JPG" alt="UFO sighting" width="613" height="151">
 
 Using the UFO Dataset provided in data.js, the data is presented to the HTML file via Javascript.
